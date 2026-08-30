@@ -35,4 +35,22 @@ class T(unittest.TestCase):
         self.assertFalse(html.exists())
         self.assertFalse(report.exists())
 
+    def test_negative_shift_reports_bad_duration_in_shifted_output(self):
+        cues=[{'start':100,'end':500,'text':'early cue'}]
+        out=shifted(cues,-1000)
+        self.assertEqual(out[0]['start'],0)
+        self.assertEqual(out[0]['end'],0)
+        report=analyze(out)
+        self.assertEqual(report['findings'][0]['kind'],'bad-duration')
+
+    def test_cli_json_report_describes_shifted_output(self):
+        td=Path(tempfile.mkdtemp()); src=td/'in.srt'; out=td/'cleaned.srt'; html=td/'report.html'; report=td/'report.json'
+        src.write_text('1\n00:00:00,100 --> 00:00:00,500\nearly cue\n',encoding='utf-8')
+        script=Path(__file__).resolve().parents[1]/'subtitle_workbench.py'
+        cp=subprocess.run([sys.executable,str(script),str(src),'--shift-ms','-1000','--output',str(out),'--html',str(html),'--json',str(report)],capture_output=True,text=True)
+        self.assertEqual(cp.returncode,0,cp.stderr)
+        data=__import__('json').loads(report.read_text(encoding='utf-8'))
+        self.assertEqual(data['findings'][0]['kind'],'bad-duration')
+        self.assertIn('00:00:00,000 --> 00:00:00,000',out.read_text(encoding='utf-8'))
+
 if __name__=='__main__': unittest.main()
