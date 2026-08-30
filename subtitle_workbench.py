@@ -67,7 +67,8 @@ def main():
         cues=parse_srt(a.input)
     except ValueError as e:
         ap.error(str(e))
-    report=analyze(cues); out=shifted(cues,a.shift_ms)
+    out=shifted(cues,a.shift_ms)
+    report=analyze(out)
     write_srt(a.output,out); Path(a.html).write_text(render(report),encoding='utf-8')
     if a.json: Path(a.json).write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     print(f"cues={report['cues']} findings={len(report['findings'])} shift_ms={a.shift_ms} output={a.output}")
