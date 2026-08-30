@@ -8,6 +8,8 @@ def ms(text):
     m=TIME_RE.fullmatch(text.strip())
     if not m: raise ValueError(f'bad timestamp: {text}')
     h,mn,s,z=map(int,m.groups())
+    if mn > 59 or s > 59:
+        raise ValueError(f'bad timestamp: {text}')
     return ((h*60+mn)*60+s)*1000+z
 
 def fmt(value):
