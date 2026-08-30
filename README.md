@@ -19,3 +19,6 @@ Python 3.10+ / 外部ライブラリ不要 / MIT License。
 - BOOTH 0円DL: https://amase-memo.booth.pm/items/8778719
 - 作者サイト: https://paper-daemon.github.io/
 
+## 入力境界
+
+非空のSRT cue blockに `-->` を含むtiming lineが無い場合は、cueを黙って捨てずエラー終了します。エラー時はcleaned SRTやreportを部分生成しません。
