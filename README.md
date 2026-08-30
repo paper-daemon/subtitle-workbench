@@ -22,3 +22,7 @@ Python 3.10+ / 外部ライブラリ不要 / MIT License。
 ## 入力境界
 
 非空のSRT cue blockに `-->` を含むtiming lineが無い場合は、cueを黙って捨てずエラー終了します。エラー時はcleaned SRTやreportを部分生成しません。
+
+## Shifted-output QA boundary
+
+`--shift-ms` を使った場合、HTML/JSON reportは入力元ではなく**実際に書き出すshift後のcue**を解析します。大きな負shiftで開始/終了が0msへclampされ、出力SRTにzero-duration cueが生じた場合も `bad-duration` として検出します。
