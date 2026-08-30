@@ -24,7 +24,9 @@ def parse_srt(path):
     for b in blocks:
         lines=b.splitlines(); idx=0
         if lines and lines[0].strip().isdigit(): idx=1
-        if idx>=len(lines) or '-->' not in lines[idx]: continue
+        if idx>=len(lines) or '-->' not in lines[idx]:
+            label=lines[0] if lines else '<empty>'
+            raise ValueError(f'bad cue block: missing timing line near {label}')
         a,btime=[x.strip() for x in lines[idx].split('-->',1)]
         cues.append({'start':ms(a),'end':ms(btime),'text':'\n'.join(lines[idx+1:]).strip()})
     return cues
@@ -60,7 +62,12 @@ def main():
     ap=argparse.ArgumentParser(description='Inspect, normalize and time-shift SRT subtitles.')
     ap.add_argument('input'); ap.add_argument('--output',default='cleaned.srt')
     ap.add_argument('--shift-ms',type=int,default=0); ap.add_argument('--html',default='subtitle-report.html'); ap.add_argument('--json')
-    a=ap.parse_args(); cues=parse_srt(a.input); report=analyze(cues); out=shifted(cues,a.shift_ms)
+    a=ap.parse_args()
+    try:
+        cues=parse_srt(a.input)
+    except ValueError as e:
+        ap.error(str(e))
+    report=analyze(cues); out=shifted(cues,a.shift_ms)
     write_srt(a.output,out); Path(a.html).write_text(render(report),encoding='utf-8')
     if a.json: Path(a.json).write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     print(f"cues={report['cues']} findings={len(report['findings'])} shift_ms={a.shift_ms} output={a.output}")
