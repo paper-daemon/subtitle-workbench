@@ -19,6 +19,25 @@ Python 3.10+ / 外部ライブラリ不要 / MIT License。
 - BOOTH 0円DL: https://amase-memo.booth.pm/items/8778719
 - 作者サイト: https://paper-daemon.github.io/
 
+## 有償で任せる
+
+ツールを自分で回す代わりに、SRTの納品前QAを固定範囲で依頼できます。
+
+**SRT字幕の納品前QA — ¥1,480**
+
+- SRT 1ファイル・字幕尺30分まで
+- 構造チェックと番号正規化
+- 重複 / 不正時間 / 長すぎる字幕 / 5秒超ギャップを検査
+- 希望時は一括タイムシフト1回
+- 修正版SRT + HTML / JSON QAレポートを納品
+- 翻訳・文章校正・字幕焼き込み・動画編集は対象外
+- テキスト進行、顔合わせ不要
+
+購入時にSRTファイルの共有URLを入力できます。
+
+- 依頼する: https://book.stripe.com/fZu14mapod380897yrgEg2i
+- ほかの依頼メニュー: https://paper-daemon.github.io/work.html
+
 ## 入力境界
 
 非空のSRT cue blockに `-->` を含むtiming lineが無い場合は、cueを黙って捨てずエラー終了します。エラー時はcleaned SRTやreportを部分生成しません。
