@@ -35,7 +35,8 @@ Python 3.10+ / 外部ライブラリ不要 / MIT License。
 
 購入時にSRTファイルの共有URLを入力できます。
 
-- 依頼する: https://book.stripe.com/fZu14mapod380897yrgEg2i
+- サービス詳細: https://paper-daemon.github.io/subtitle-qa.html
+- 直接依頼する: https://book.stripe.com/fZu14mapod380897yrgEg2i
 - ほかの依頼メニュー: https://paper-daemon.github.io/work.html
 
 ## 入力境界
