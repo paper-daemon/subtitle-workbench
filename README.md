@@ -23,7 +23,7 @@ Python 3.10+ / 外部ライブラリ不要 / MIT License。
 
 ツールを自分で回す代わりに、SRTの納品前QAを固定範囲で依頼できます。
 
-**SRT字幕の納品前QA — ¥1,480**
+**SRT字幕の納品前QA（固定範囲）**
 
 - SRT 1ファイル・字幕尺30分まで
 - 構造チェックと番号正規化
@@ -33,10 +33,9 @@ Python 3.10+ / 外部ライブラリ不要 / MIT License。
 - 翻訳・文章校正・字幕焼き込み・動画編集は対象外
 - テキスト進行、顔合わせ不要
 
-購入時にSRTファイルの共有URLを入力できます。
+価格と依頼は正本ページから（ココナラで受付中）：
 
 - サービス詳細: https://paper-daemon.github.io/subtitle-qa.html
-- 直接依頼する: https://book.stripe.com/fZu14mapod380897yrgEg2i
 - ほかの依頼メニュー: https://paper-daemon.github.io/work.html
 
 ## 入力境界
